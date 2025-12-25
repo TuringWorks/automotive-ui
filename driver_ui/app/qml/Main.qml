@@ -26,9 +26,8 @@ Window {
         running: true
         repeat: true
         onTriggered: {
-            if (typeof clusterApp !== 'undefined' &&
-                clusterApp.safetyMonitor) {
-                clusterApp.safetyMonitor.recordFrame()
+            if (typeof clusterApp !== 'undefined' && clusterApp.safetyMonitor) {
+                clusterApp.safetyMonitor.recordFrame();
             }
         }
     }
@@ -38,7 +37,7 @@ Window {
         sequence: "F1"
         onActivated: {
             if (typeof faultInjector !== 'undefined') {
-                faultInjector.startScenario(1, 5000)  // Stale speed
+                faultInjector.startScenario(1, 5000);  // Stale speed
             }
         }
     }
@@ -47,7 +46,7 @@ Window {
         sequence: "F2"
         onActivated: {
             if (typeof faultInjector !== 'undefined') {
-                faultInjector.startScenario(5, 5000)  // Multiple stale
+                faultInjector.startScenario(5, 5000);  // Multiple stale
             }
         }
     }
@@ -56,7 +55,28 @@ Window {
         sequence: "Escape"
         onActivated: {
             if (typeof faultInjector !== 'undefined') {
-                faultInjector.stopScenario()
+                faultInjector.stopScenario();
+            }
+        }
+    }
+
+    // Turn signal testing shortcuts
+    Shortcut {
+        sequence: "Left"
+        onActivated: {
+            if (typeof signalHub !== 'undefined') {
+                // Toggle left turn signal
+                console.log("Left turn signal toggled");
+            }
+        }
+    }
+
+    Shortcut {
+        sequence: "Right"
+        onActivated: {
+            if (typeof signalHub !== 'undefined') {
+                // Toggle right turn signal
+                console.log("Right turn signal toggled");
             }
         }
     }

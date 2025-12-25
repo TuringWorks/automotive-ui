@@ -46,6 +46,7 @@ qt_add_qml_module(driver_ui
         app/qml/ClusterView.qml
         app/qml/DriveView.qml
         app/qml/TelltaleBar.qml
+        app/qml/TurnIndicator.qml
         app/qml/AlertOverlay.qml
         app/qml/GearIndicator.qml
         app/qml/DegradedModeView.qml

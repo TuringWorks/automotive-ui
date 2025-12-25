@@ -214,7 +214,8 @@ TelltaleState TelltaleManager::toState(const QString& signalId) const
         state.priority = config.priority;
         state.active = config.active;
         state.valid = config.valid;
-        state.blinking = config.priority <= 1 && config.active;
+        // Turn signals (priority 3) and critical warnings (priority 0-1) should blink
+        state.blinking = (config.priority <= 1 || config.priority == 3) && config.active;
     }
 
     return state;

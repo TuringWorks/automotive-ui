@@ -14,7 +14,9 @@ Item {
         color: clusterViewModel.isDegraded ? "#1A0000" : "#000000"
 
         Behavior on color {
-            ColorAnimation { duration: 300 }
+            ColorAnimation {
+                duration: 300
+            }
         }
     }
 
@@ -32,7 +34,9 @@ Item {
         visible: !clusterViewModel.isDegraded || true  // Always visible in degraded
 
         Behavior on opacity {
-            NumberAnimation { duration: 300 }
+            NumberAnimation {
+                duration: 300
+            }
         }
 
         // Left section - Secondary gauges
@@ -64,10 +68,12 @@ Item {
                     border.width: 8
 
                     function getBatteryColor() {
-                        var level = clusterViewModel.batteryLevel
-                        if (level < 20) return "#EF4444"
-                        if (level < 40) return "#F59E0B"
-                        return "#22C55E"
+                        var level = clusterViewModel.batteryLevel;
+                        if (level < 20)
+                            return "#EF4444";
+                        if (level < 40)
+                            return "#F59E0B";
+                        return "#22C55E";
                     }
                 }
 
@@ -77,8 +83,7 @@ Item {
 
                     Text {
                         anchors.horizontalCenter: parent.horizontalCenter
-                        text: clusterViewModel.batteryValid ?
-                              Math.round(clusterViewModel.batteryLevel) + "%" : "—"
+                        text: clusterViewModel.batteryValid ? Math.round(clusterViewModel.batteryLevel) + "%" : "—"
                         font.pixelSize: 32
                         font.weight: Font.Medium
                         color: "#FFFFFF"
@@ -101,8 +106,7 @@ Item {
 
                 Text {
                     anchors.horizontalCenter: parent.horizontalCenter
-                    text: clusterViewModel.batteryValid ?
-                          Math.round(clusterViewModel.range) : "—"
+                    text: clusterViewModel.batteryValid ? Math.round(clusterViewModel.range) : "—"
                     font.pixelSize: 40
                     font.weight: Font.Light
                     color: "#FFFFFF"
@@ -178,6 +182,80 @@ Item {
             height: 48
         }
 
+        // Large left turn indicator (side)
+        TurnIndicator {
+            anchors.left: parent.left
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.leftMargin: -20
+            width: 160
+            height: 120
+            isLeft: true
+            active: leftSideTurnActive
+            activeColor: "#22C55E"
+            opacity: leftSideTurnActive ? 1.0 : 0.0
+            scale: leftSideTurnActive ? 1.0 : 0.8
+
+            Behavior on opacity {
+                NumberAnimation {
+                    duration: 200
+                }
+            }
+
+            Behavior on scale {
+                NumberAnimation {
+                    duration: 200
+                    easing.type: Easing.OutBack
+                }
+            }
+
+            property bool leftSideTurnActive: {
+                var telltales = clusterViewModel.activeTelltales;
+                for (var i = 0; i < telltales.length; i++) {
+                    if (telltales[i].id.indexOf("turn_left") >= 0) {
+                        return telltales[i].active;
+                    }
+                }
+                return false;
+            }
+        }
+
+        // Large right turn indicator (side)
+        TurnIndicator {
+            anchors.right: parent.right
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.rightMargin: -20
+            width: 160
+            height: 120
+            isLeft: false
+            active: rightSideTurnActive
+            activeColor: "#22C55E"
+            opacity: rightSideTurnActive ? 1.0 : 0.0
+            scale: rightSideTurnActive ? 1.0 : 0.8
+
+            Behavior on opacity {
+                NumberAnimation {
+                    duration: 200
+                }
+            }
+
+            Behavior on scale {
+                NumberAnimation {
+                    duration: 200
+                    easing.type: Easing.OutBack
+                }
+            }
+
+            property bool rightSideTurnActive: {
+                var telltales = clusterViewModel.activeTelltales;
+                for (var i = 0; i < telltales.length; i++) {
+                    if (telltales[i].id.indexOf("turn_right") >= 0) {
+                        return telltales[i].active;
+                    }
+                }
+                return false;
+            }
+        }
+
         // Alert overlay
         AlertOverlay {
             anchors.bottom: parent.bottom
@@ -198,8 +276,14 @@ Item {
         SequentialAnimation on border.width {
             running: clusterViewModel.isDegraded
             loops: Animation.Infinite
-            NumberAnimation { to: 2; duration: 500 }
-            NumberAnimation { to: 4; duration: 500 }
+            NumberAnimation {
+                to: 2
+                duration: 500
+            }
+            NumberAnimation {
+                to: 4
+                duration: 500
+            }
         }
     }
 }
