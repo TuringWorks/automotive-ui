@@ -1,0 +1,15 @@
+Code Metrics Report
+Generated: Wed Dec 24 20:41:32 PST 2025
+========================================
+
+Safety Core (driver_ui/safety_core/):
+    1967 total
+
+Shared Platform (shared/):
+    3623 total
+
+QML Files:
+   14188 total
+
+Test Files:
+     271 total

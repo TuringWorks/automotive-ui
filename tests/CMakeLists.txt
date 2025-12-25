@@ -27,7 +27,7 @@ target_include_directories(test_helpers PUBLIC
 target_link_libraries(test_helpers PUBLIC
     GTest::gtest
     GTest::gmock
-    automotive_shared
+    automotive_platform
     Qt6::Core
 )
 
@@ -44,7 +44,7 @@ target_link_libraries(test_safety_core PRIVATE
     test_helpers
     GTest::gtest_main
     GTest::gmock
-    driver_ui_safety_core
+    driver_safety_core
 )
 
 add_test(NAME SafetyCoreTests COMMAND test_safety_core)
@@ -61,7 +61,7 @@ target_link_libraries(test_security PRIVATE
     test_helpers
     GTest::gtest_main
     GTest::gmock
-    infotainment_ui_core
+    infotainment_core
 )
 
 add_test(NAME SecurityTests COMMAND test_security)
@@ -75,7 +75,7 @@ add_executable(test_ipc
 target_link_libraries(test_ipc PRIVATE
     test_helpers
     GTest::gtest_main
-    automotive_shared
+    automotive_platform
 )
 
 add_test(NAME IPCTests COMMAND test_ipc)
@@ -90,8 +90,8 @@ target_link_libraries(test_integration PRIVATE
     test_helpers
     GTest::gtest_main
     GTest::gmock
-    driver_ui_safety_core
-    infotainment_ui_core
+    driver_safety_core
+    infotainment_core
 )
 
 add_test(NAME IntegrationTests COMMAND test_integration)
