@@ -1,0 +1,179 @@
+# Build directories
+build/
+build-*/
+cmake-build-*/
+out/
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps/
+*.cmake
+
+# Qt/QML
+*.qmlc
+*.jsc
+*.qrc.depends
+*.moc
+moc_*.cpp
+moc_*.h
+qrc_*.cpp
+ui_*.h
+*.autosave
+*.user
+*.user.*
+.qmake.stash
+*.pro.user
+*.pro.user.*
+*.qbs.user
+*.qbs.user.*
+*.moc
+*.obj
+*.orig
+*.rej
+*.so
+*.so.*
+*_plugin_import.cpp
+/.qmake.cache
+/.qmake.stash
+*.qmlc.d
+*.jsc.d
+
+# Qt Creator
+*.creator
+*.creator.user
+*.files
+*.includes
+*.config
+*.cflags
+*.cxxflags
+
+# C/C++
+*.o
+*.a
+*.lo
+*.la
+*.al
+.libs
+*.so
+*.so.*
+*.dylib
+*.dll
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+# Debug/Release
+Debug/
+Release/
+RelWithDebInfo/
+MinSizeRel/
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.cproject
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# Backup files
+*~
+*.bak
+*.backup
+*.tmp
+*.temp
+
+# Logs
+*.log
+
+# Package managers
+node_modules/
+package-lock.json
+yarn.lock
+
+# Testing
+Testing/
+*.gcda
+*.gcno
+*.gcov
+coverage/
+*.coverage
+
+# Documentation build
+docs/_build/
+docs/html/
+docs/latex/
+
+# Dependency directories
+third_party/
+dependencies/
+external/
+
+# Generated files
+generated/
+*.generated.*
+
+# Cache
+.cache/
+*.cache
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Misc
+*.stackdump
+core
+core.*
