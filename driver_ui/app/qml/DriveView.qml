@@ -50,10 +50,12 @@ Item {
             capStyle: ShapePath.RoundCap
 
             function getSpeedColor() {
-                var percent = clusterViewModel.speedPercent
-                if (percent > 0.9) return "#EF4444"
-                if (percent > 0.7) return "#F59E0B"
-                return "#60A5FA"
+                var percent = clusterViewModel.speedPercent;
+                if (percent > 0.9)
+                    return "#EF4444";
+                if (percent > 0.7)
+                    return "#F59E0B";
+                return "#60A5FA";
             }
 
             PathAngleArc {
@@ -67,7 +69,9 @@ Item {
         }
 
         Behavior on opacity {
-            NumberAnimation { duration: 100 }
+            NumberAnimation {
+                duration: 100
+            }
         }
     }
 
@@ -87,22 +91,24 @@ Item {
                 width: index % 2 === 0 ? 3 : 2
                 height: index % 2 === 0 ? 20 : 12
                 color: {
-                    var threshold = index / 8
-                    if (threshold > 0.9) return "#EF4444"
-                    if (threshold > 0.7) return "#F59E0B"
-                    return "#666666"
+                    var threshold = index / 8;
+                    if (threshold > 0.9)
+                        return "#EF4444";
+                    if (threshold > 0.7)
+                        return "#F59E0B";
+                    return "#666666";
                 }
                 radius: 1
             }
         }
     }
 
-    // Speed display
+    // Speed display with dual units
     Column {
         anchors.centerIn: parent
-        spacing: 8
+        spacing: 4
 
-        // Speed number
+        // Primary speed number (current unit)
         Text {
             id: speedText
             anchors.horizontalCenter: parent.horizontalCenter
@@ -119,18 +125,66 @@ Item {
             SequentialAnimation on staleOpacity {
                 running: clusterViewModel.speedStale
                 loops: Animation.Infinite
-                NumberAnimation { to: 0.3; duration: 300 }
-                NumberAnimation { to: 1.0; duration: 300 }
+                NumberAnimation {
+                    to: 0.3
+                    duration: 300
+                }
+                NumberAnimation {
+                    to: 1.0
+                    duration: 300
+                }
             }
         }
 
-        // Unit
+        // Primary unit
         Text {
             anchors.horizontalCenter: parent.horizontalCenter
             text: clusterViewModel.speedUnit
             font.pixelSize: 20
             font.weight: Font.Medium
-            color: "#808080"
+            color: "#FFFFFF"
+        }
+
+        // Secondary speed (converted unit)
+        Row {
+            anchors.horizontalCenter: parent.horizontalCenter
+            spacing: 8
+
+            Text {
+                text: getSecondarySpeed()
+                font.pixelSize: 24
+                font.weight: Font.Normal
+                color: "#808080"
+
+                function getSecondarySpeed() {
+                    if (!clusterViewModel.speedValid)
+                        return "—";
+                    var speed = clusterViewModel.speed;
+                    var isKmh = clusterViewModel.speedUnit === "km/h";
+
+                    if (isKmh) {
+                        // Convert km/h to mph
+                        var mph = speed * 0.621371;
+                        return Math.round(mph);
+                    } else {
+                        // Convert mph to km/h
+                        var kmh = speed * 1.60934;
+                        return Math.round(kmh);
+                    }
+                }
+            }
+
+            Text {
+                text: getSecondaryUnit()
+                font.pixelSize: 16
+                font.weight: Font.Normal
+                color: "#666666"
+
+                function getSecondaryUnit() {
+                    var isKmh = clusterViewModel.speedUnit === "km/h";
+                    return isKmh ? "mph" : "km/h";
+                }
+            }
         }
     }
 

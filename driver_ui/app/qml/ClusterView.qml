@@ -99,10 +99,10 @@ Item {
                 }
             }
 
-            // Range display
+            // Range display (dual units)
             Column {
                 width: 160
-                spacing: 4
+                spacing: 2
 
                 Text {
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -116,6 +116,14 @@ Item {
                     anchors.horizontalCenter: parent.horizontalCenter
                     text: "km RANGE"
                     font.pixelSize: 12
+                    font.weight: Font.Medium
+                    color: "#FFFFFF"
+                }
+
+                Text {
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: clusterViewModel.batteryValid ? Math.round(clusterViewModel.range * 0.621371) + " mi" : "—"
+                    font.pixelSize: 14
                     color: "#808080"
                 }
             }
@@ -143,12 +151,24 @@ Item {
                 color: "#FFFFFF"
             }
 
-            // Outside temperature
-            Text {
+            // Outside temperature (dual units)
+            Column {
                 anchors.horizontalCenter: parent.horizontalCenter
-                text: Math.round(clusterViewModel.outsideTemp) + "°C"
-                font.pixelSize: 24
-                color: "#808080"
+                spacing: 2
+
+                Text {
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: Math.round(clusterViewModel.outsideTemp) + "°C"
+                    font.pixelSize: 24
+                    color: "#FFFFFF"
+                }
+
+                Text {
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: Math.round(clusterViewModel.outsideTemp * 9 / 5 + 32) + "°F"
+                    font.pixelSize: 16
+                    color: "#808080"
+                }
             }
 
             // Power consumption
