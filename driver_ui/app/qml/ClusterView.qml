@@ -182,11 +182,12 @@ Item {
             height: 48
         }
 
-        // Large left turn indicator (side)
+        // Large left turn indicator (bottom left)
         TurnIndicator {
             anchors.left: parent.left
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.leftMargin: -20
+            anchors.bottom: parent.bottom
+            anchors.leftMargin: 48
+            anchors.bottomMargin: 100
             width: 160
             height: 120
             isLeft: true
@@ -219,11 +220,12 @@ Item {
             }
         }
 
-        // Large right turn indicator (side)
+        // Large right turn indicator (bottom right)
         TurnIndicator {
             anchors.right: parent.right
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.rightMargin: -20
+            anchors.bottom: parent.bottom
+            anchors.rightMargin: 48
+            anchors.bottomMargin: 100
             width: 160
             height: 120
             isLeft: false
