@@ -1,0 +1,5 @@
+module DriverAdas
+
+AdasStateZone 1.0 AdasStateZone.qml
+TakeoverBanner 1.0 TakeoverBanner.qml
+PerceptionMiniView 1.0 PerceptionMiniView.qml

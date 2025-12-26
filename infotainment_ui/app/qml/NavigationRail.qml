@@ -32,13 +32,13 @@ Rectangle {
         signal activated
 
         width: parent.width
-        height: 78
+        height: 64
 
         Rectangle {
             id: buttonBackground
             anchors.fill: parent
-            anchors.margins: 10
-            radius: 24
+            anchors.margins: 6
+            radius: 16
             color: selected ? "#1F3442" : (buttonMouseArea.containsMouse ? "#151D24" : "transparent")
             border.color: selected ? "#4DC9CB" : "transparent"
             border.width: selected ? 1.5 : 0
@@ -165,16 +165,12 @@ Rectangle {
 
     ColumnLayout {
         anchors.fill: parent
-        anchors.margins: 16
-        spacing: 10
+        anchors.margins: 8
+        spacing: 4
 
-        // Spacer at top
+        // Minimal top spacer
         Item {
-            Layout.preferredHeight: 20
-        }
-
-        Item {
-            Layout.preferredHeight: 12
+            Layout.preferredHeight: 8
         }
 
         NavButton {
@@ -219,6 +215,13 @@ Rectangle {
             onActivated: appFramework.navigateTo(5)
         }
 
+        NavButton {
+            icon: "🤖"
+            label: "AUTONOMY"
+            selected: appFramework.currentPage === 6
+            onActivated: appFramework.navigateTo(6)
+        }
+
         Item {
             Layout.fillHeight: true
         }
@@ -226,8 +229,8 @@ Rectangle {
         NavButton {
             icon: "⚙"
             label: "SETTINGS"
-            selected: appFramework.currentPage === 6
-            onActivated: appFramework.navigateTo(6)
+            selected: appFramework.currentPage === 7
+            onActivated: appFramework.navigateTo(7)
         }
     }
 }

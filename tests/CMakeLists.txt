@@ -96,6 +96,25 @@ target_link_libraries(test_integration PRIVATE
 
 add_test(NAME IntegrationTests COMMAND test_integration)
 
+# ADAS tests
+add_executable(test_adas
+    adas/test_adas_state_service.cpp
+    adas/test_takeover_manager.cpp
+    adas/test_perception_model.cpp
+)
+
+target_link_libraries(test_adas PRIVATE
+    test_helpers
+    GTest::gtest
+    GTest::gtest_main
+    GTest::gmock
+    automotive_adas
+    Qt6::Core
+    Qt6::Test
+)
+
+add_test(NAME AdasTests COMMAND test_adas)
+
 # Coverage target
 if(CMAKE_BUILD_TYPE STREQUAL "Debug" AND CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
     find_program(GCOV gcov)

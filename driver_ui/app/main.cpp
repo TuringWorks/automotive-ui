@@ -10,6 +10,13 @@
 
 #include "ClusterApplication.h"
 #include "ClusterViewModel.h"
+#include "AdasViewModel.h"
+
+#include "adas/AdasStateService.h"
+#include "adas/PerceptionModel.h"
+#include "adas/TakeoverManager.h"
+#include "adas/HmiEventLog.h"
+#include "adas/AdasVisualQualityManager.h"
 
 #include "signal/SignalHub.h"
 #include "signal/VehicleSignals.h"
@@ -57,6 +64,22 @@ int main(int argc, char *argv[])
                                         clusterApp.telltaleManager(),
                                         clusterApp.degradedController());
 
+    // Create ADAS services
+    adas::AdasStateService adasStateService;
+    adas::PerceptionModel perceptionModel;
+    adas::TakeoverManager takeoverManager;
+    adas::HmiEventLog hmiEventLog;
+    adas::AdasVisualQualityManager qualityManager;
+
+    // Create ADAS view model
+    driver::AdasViewModel adasViewModel(
+        &adasStateService,
+        &perceptionModel,
+        &takeoverManager,
+        &hmiEventLog,
+        &qualityManager
+    );
+
     // Register types with QML
     qmlRegisterUncreatableType<driver::ClusterViewModel>(
         "DriverUI", 1, 0, "ClusterViewModel",
@@ -73,6 +96,7 @@ int main(int argc, char *argv[])
 
     // Expose objects to QML
     engine.rootContext()->setContextProperty(QStringLiteral("clusterViewModel"), &viewModel);
+    engine.rootContext()->setContextProperty(QStringLiteral("adasViewModel"), &adasViewModel);
     engine.rootContext()->setContextProperty(QStringLiteral("clusterApp"), &clusterApp);
     engine.rootContext()->setContextProperty(QStringLiteral("faultInjector"),
                                               clusterApp.faultInjector());

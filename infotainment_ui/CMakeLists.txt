@@ -56,6 +56,13 @@ qt_add_qml_module(infotainment_ui
         app/qml/AppDrawer.qml
         app/qml/NavigationRail.qml
         app/qml/NowPlayingBar.qml
+        app/qml/autonomy/AutonomyCenterPage.qml
+        app/qml/autonomy/CapabilityOverview.qml
+        app/qml/autonomy/WhyUnavailable.qml
+        app/qml/autonomy/EventTimeline.qml
+        app/qml/autonomy/OddViewer.qml
+        app/qml/autonomy/PerceptionExplorer.qml
+        app/qml/autonomy/AutonomySettings.qml
     RESOURCES
         app/resources/resources.qrc
 )
@@ -67,7 +74,9 @@ target_include_directories(infotainment_ui PRIVATE
 target_link_libraries(infotainment_ui PRIVATE
     infotainment_core
     automotive_platform
+    automotive_adas3d
     Qt6::Quick
+    Qt6::Quick3D
     Qt6::QuickControls2
     Qt6::Positioning
     Qt6::Location

@@ -36,6 +36,7 @@ qt_add_executable(driver_ui
     app/main.cpp
     app/cpp/ClusterApplication.cpp
     app/cpp/ClusterViewModel.cpp
+    app/cpp/AdasViewModel.cpp
 )
 
 qt_add_qml_module(driver_ui
@@ -50,6 +51,9 @@ qt_add_qml_module(driver_ui
         app/qml/AlertOverlay.qml
         app/qml/GearIndicator.qml
         app/qml/DegradedModeView.qml
+        app/qml/adas/AdasStateZone.qml
+        app/qml/adas/TakeoverBanner.qml
+        app/qml/adas/PerceptionMiniView.qml
     RESOURCES
         app/resources/resources.qrc
 )
@@ -62,7 +66,9 @@ target_include_directories(driver_ui PRIVATE
 target_link_libraries(driver_ui PRIVATE
     driver_safety_core
     automotive_platform
+    automotive_adas3d
     Qt6::Quick
+    Qt6::Quick3D
     Qt6::QuickControls2
 )
 

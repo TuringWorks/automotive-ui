@@ -190,8 +190,9 @@ Item {
                     case 3: return "PhonePage.qml"
                     case 4: return "ProjectionPage.qml"
                     case 5: return "VehiclePage.qml"
-                    case 6: return "SettingsPage.qml"
-                    case 7: return "AppDrawer.qml"
+                    case 6: return "autonomy/AutonomyCenterPage.qml"
+                    case 7: return "SettingsPage.qml"
+                    case 8: return "AppDrawer.qml"
                     default: return "HomePage.qml"
                 }
             }

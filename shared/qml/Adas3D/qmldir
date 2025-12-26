@@ -1,0 +1,8 @@
+module Adas3D
+
+AdasScene3D 1.0 AdasScene3D.qml
+RoadVisualization 1.0 RoadVisualization.qml
+LaneBoundaryLine 1.0 LaneBoundaryLine.qml
+WeatherParticles 1.0 WeatherParticles.qml
+LeadVehicleMarker 1.0 LeadVehicleMarker.qml
+ObjectInstances 1.0 ObjectInstances.qml

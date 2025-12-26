@@ -85,6 +85,28 @@ target_link_libraries(automotive_logging PUBLIC
 automotive_standard_settings(automotive_logging)
 
 # ============================================================================
+# ADAS Library
+# ============================================================================
+
+add_library(automotive_adas STATIC
+    cpp/adas/AdasStateService.cpp
+    cpp/adas/PerceptionModel.cpp
+    cpp/adas/TakeoverManager.cpp
+    cpp/adas/HmiEventLog.cpp
+    cpp/adas/AdasVisualQualityManager.cpp
+)
+
+target_include_directories(automotive_adas PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}/cpp
+)
+
+target_link_libraries(automotive_adas PUBLIC
+    Qt6::Core
+)
+
+automotive_safety_settings(automotive_adas)
+
+# ============================================================================
 # Combined Platform Library
 # ============================================================================
 
@@ -95,6 +117,7 @@ target_link_libraries(automotive_platform INTERFACE
     automotive_ipc
     automotive_scheduler
     automotive_logging
+    automotive_adas
 )
 
 # ============================================================================
@@ -131,4 +154,27 @@ qt_add_qml_module(automotive_designsystem
 target_link_libraries(automotive_designsystem PUBLIC
     Qt6::Quick
     Qt6::QuickControls2
+)
+
+# ============================================================================
+# ADAS 3D QML Module
+# ============================================================================
+
+qt_add_qml_module(automotive_adas3d
+    URI Adas3D
+    VERSION 1.0
+    QML_FILES
+        qml/Adas3D/AdasScene3D.qml
+        qml/Adas3D/RoadVisualization.qml
+        qml/Adas3D/LaneBoundaryLine.qml
+        qml/Adas3D/WeatherParticles.qml
+        qml/Adas3D/LeadVehicleMarker.qml
+        qml/Adas3D/ObjectInstances.qml
+    OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/qml/Adas3D
+)
+
+target_link_libraries(automotive_adas3d PUBLIC
+    Qt6::Quick
+    Qt6::Quick3D
+    Qt6::Quick3DParticles
 )

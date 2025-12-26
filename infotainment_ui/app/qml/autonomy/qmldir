@@ -1,0 +1,9 @@
+module AutonomyCenter
+
+AutonomyCenterPage 1.0 AutonomyCenterPage.qml
+CapabilityOverview 1.0 CapabilityOverview.qml
+WhyUnavailable 1.0 WhyUnavailable.qml
+EventTimeline 1.0 EventTimeline.qml
+OddViewer 1.0 OddViewer.qml
+PerceptionExplorer 1.0 PerceptionExplorer.qml
+AutonomySettings 1.0 AutonomySettings.qml
